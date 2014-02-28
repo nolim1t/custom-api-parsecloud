@@ -1,4 +1,3 @@
-
 // This cloud code snippet allows a mobile developer to build a custom UI without
 // having to familiarize themselves with parse (or integrate all the cruft that comes with it)
 
@@ -86,7 +85,9 @@ app.post('/1/register', function(req, res) {
             res.send(JSON.stringify(output), output.meta.code);
         }
     } catch (err) {
-        res.send(JSON.stringify({meta:{code: 500, msg: "Internal Server Error (" + err.message + ")"}}), 500)
+        output.meta.code = 500;
+        output.meta.msg = 'Internal server error (' + err.message + ')'
+        res.send(JSON.stringify(output), output.meta.code);        
     }
 });
 
